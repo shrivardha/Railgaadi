@@ -1,0 +1,71 @@
+{% extends 'train/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    input[type=text][type=password]{
+    border-radius:8px;
+    width:600px;
+    height:16px;
+    }
+</style>
+
+{% if error %}
+<!-- <script>
+  alert('Ticket Cancelled Successfully')
+  window.location='{% url 'my_booking' %}'
+</script> -->
+{% endif %}
+<div style="color:rgb(43, 14, 148);border:1px solid white;border-radius:8px;background-color:white;padding:50px;
+background-image: url(http://127.0.0.1:8000/media/train.pics/Rajdhani_Ou1OZMW.jpg);">
+        <h3 style="color: purple;"><strong >Booking Details</strong></h3><hr>
+
+<div class="container">
+<table class="table table-bordered" id="myTable">
+  <thead style="color:white;background-color:rgb(194, 161, 15)">
+  <tr>
+    <th>Sr No</th>
+    <th>Passenger</th>
+      <th>Train Name & No.</th>
+      <th>Age</th>
+    <th>Gender</th>
+    <th>Date</th>
+       <th>Fare</th>
+       <th>Travelling</th>
+       <th>Status</th>
+   
+     <th>Action</th>
+  </tr>
+  </thead>
+   <tbody>
+
+    {% for i in pro %}
+
+  <tr>
+    <td>{{forloop.counter}}</td>
+    <td>{{i.name}}</td>
+    <td>{{i.train.trainname}}. {{i.train.tran_no}}</td>
+      <td>{{i.age}}</td>
+      <td>{{i.gender}}</td>
+      <td>{{i.date1}}</td>
+      <td>{{i.fare}}</td>
+      <td>{{i.route}}</td>
+      {% if i.status == 'set' %}
+      <td style="color:green">Booking Confirmed</td>
+      {% else %}
+      <td style="color:red">No Transaction</td>
+      {% endif %}
+    <!--<td><a href="{% url 'delete_my_booking' i.id %}" style="color:red"><u>Cancel</u></a>-->
+    <td><a href="{% url 'view_ticket' i.id %}" style="color:red"><u>View&nbsp;Ticket</u></a>
+    </td>
+
+  </tr>
+
+    {% endfor %}
+    </tbody>
+</table>
+
+ </div>
+
+</div>
+
+{% endblock content %}

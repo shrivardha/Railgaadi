@@ -1,0 +1,16 @@
+{% extends "train/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="content-section" style="background-image: url(http://127.0.0.1:8000/media/train.pics/Rajdhani_Ou1OZMW.jpg);">
+  <div class="media">
+     <img class="rounded-circle account-img" src="{% static 'train\default1.jpg' %}"> 
+    <div class="media-body">
+      
+      <h2 class="account-heading">{{ user.username }}</h2>
+      <p class="text-success" ><strong>{{ user.email }}</strong></p>
+    </div>
+  </div>
+  
+</div>
+{% endblock content %}

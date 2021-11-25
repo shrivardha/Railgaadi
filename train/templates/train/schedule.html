@@ -1,0 +1,39 @@
+{% extends 'train/base.html' %}
+{% load static %}
+ {% block content %}
+ <h1 style="color: rebeccapurple; 
+ ">Schedule</h1>
+ <table class="table">
+    <thead style="color: rgb(12, 130, 134); background-color: rgb(174, 212, 230);
+    ">
+      <tr>
+        <th scope="col">Train no</th>
+        <th scope="col">Train Name</th>
+        <th scope="col">Route</th>
+        <th scope="col">Arrival Time</th>
+        <th scope="col">Departure Time</th>
+        <th scope="col">Travel Time</th>
+        <th scope="col">Distance</th>
+        <th scope="col">Image</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+    {% for train in t %}
+      <tr>
+        <th scope="row">{{ train.train_no }}</th>
+        <th scope="row">{{ train.trainname }}</th>
+        <td>{{ train.from_city }} to  {{ train.to_city }} </td>
+        <td> {{ train.arrivaltime }}</td>
+        <td>{{ train.departuretime }}</td>
+        <td>{{ train.traveltime }}</td>
+        <td>{{ train.distance }}</td>
+        <td><img src="{{train.img.url}}" width="300px"; height="180px";></td>
+        <!--<td><a href="/bookticket/registration/" class="btn btn-primary" type="submit">BOOK</a></td>-->
+      </tr>
+        {% endfor %}
+       </tbody> 
+  </table>
+  <br><br>
+
+ {% endblock %}

@@ -1,0 +1,45 @@
+{% extends "train/base.html" %}\
+{% load static %}
+{% block content %}
+<h1 style="color: rgb(20, 173, 175);">About Us</h1>
+<div id="carouselExampleCaptions" class="carousel slide carousel-fade " data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://images.unsplash.com/photo-1592844002373-a55ecd7af140?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE3fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60" class="d-block w-100" alt="..." width="900" height="400">
+        <div class="carousel-caption d-none d-md-block">
+          <h1 style="color: white;">Travelling- A JOY</h1>
+          <p style="color: white; font-size: 18px;">Travelling is one of the most crucial factor that connects us with the mighty world. <br>Be a passionate Travellor!</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://images.unsplash.com/photo-1535319591747-02dddc75b08f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzB8fHJhaWx3YXlzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" class="d-block w-100" alt="..." width="1000" height="400">
+        <div class="carousel-caption d-none d-md-block">
+          <h1 style="color: white;">Who we are?</h1>
+          <p style="color: white;font-size: 18px;">We too are those passionate travellors aiming to give you a comforatble and a soothing experience throught your travel!</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://images.unsplash.com/photo-1529179307417-ca83d48bd790?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bWV0cm98ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" class="d-block w-100" alt="..." width="1000" height="400">
+        <div class="carousel-caption d-none d-md-block">
+          <h1 style="color: white;">What we have?</h1>
+          <p style="color: white;font-size: 18px;">We present you a plethora of Trains connecting , not just stations but people all over!</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+{% endblock content %}

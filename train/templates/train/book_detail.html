@@ -1,0 +1,90 @@
+{% extends "train/base.html" %}
+{% block content %}
+    <h1 style="color: blueviolet;font-family: Georgia, 'Times New Roman', Times, serif;">Book-Detail!</h1>
+<style>
+    input[type=text][type=password]{
+    border-radius:8px;
+    width:600px;
+    height:16px;
+    }
+</style>
+{% if error %}
+<script>
+    alert('Passenger Added Successfully')
+    window.location='{% url 'book_detail' coun data2.id route1 %}'
+</script>
+{% endif %}
+
+<div style="color:rgb(16, 172, 29);border:1px solid white;border-radius:8px;background-color:white;padding:50px">
+
+    <h3 style="color: rgb(9, 94, 16);"><strong>Train Detail</strong></h3><hr>
+    <table width="800">
+        <tr>
+            <td><img src="{{data2.img.url}}" style="width:350px;height:200px; color: rgb(231, 141, 77);"></td>
+            <td><b>Train Name: {{data2.trainname}}</b><br>
+                Train Number: {{data2.train_no}}<br>
+                From City: {{data2.from_city}}<br>
+                Fare: {{data.fare}}<br></td>
+        </tr>
+    </table><hr>
+
+        <hr><h3 style="color: salmon;"><strong>Enter Passenger Details</strong></h3><hr>
+    <form method="post" action="">
+        {% csrf_token %}
+        <input type="text" placeholder="Passenger Name" name="name" style="border-radius:8px;width:300px;height:35px;margin-left:20px" required>
+        <input type="number" placeholder="Passenger Age" name="age" style="border-radius:8px;width:300px;height:35px;margin-left:20px" required>
+        <select name="gender" style="border-radius:8px;width:300px;height:35px;margin-left:20px">
+
+                            <option>Male</option>
+                            <option>Female</option>
+        </select>
+        <input type="submit" value="Add" style="color:white;border-radius:8px;width:115px;height:35px;background-color:rgb(29, 170, 189);border:1px solid rgb(224, 160, 160);margin-left:100px">
+    </form><br>
+            <hr><h3><strong>All Added Passengers</strong></h3><hr>
+
+    <div class="container">
+        {% for i in messages %}
+        <h3 style="color:red"><strong>! {{i}}</strong></h3>
+        {% endfor %}
+
+<table class="table table-bordered" id="myTable">
+  <thead style="color:white;background-color:rgb(72, 226, 188)">
+  <tr>
+    <th>Sr No</th>
+    <th>Name</th>
+      <th>Train Name & No.</th>
+      <th> Age</th>
+    <th>Gender</th>
+    <th>Date</th>
+       <th>Fare</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+   <tbody>
+
+    {% for i in pro %}
+
+  <tr>
+{% if i.status != 'set' %}
+    <td>{{forloop.counter}}</td>
+    <td>{{i.name}}</td>
+    <td>{{i.train.trainname}}. {{i.train.train_no}}</td>
+      <td>{{i.age}}</td>
+      <td>{{i.gender}}</td>
+      <td>{{i.date1}}</td>
+      <td>{{i.fare}}</td>
+    <td><a href="{% url 'delete_passenger' i.id data2.id route1 %}" style="color:red"><u>Delete</u></a></td>
+      {% endif %}
+
+  </tr>
+
+    {% endfor %}
+    </tbody>
+</table>
+
+ </div><br>
+<div style="background-color:rgb(230, 99, 175);padding-left:190px;border-radius:8px;padding-top:3px;padding-bottom:3px"><h4 style="color:rgb(218, 23, 23);"><strong>Total = {{total}}</strong>
+    <button style="background-color:rgb(231, 240, 231);margin-left:25px;border-radius:6px;border:1px solid red;padding:8px"><a href="{% url 'card_detail' total coun route1 pid %}" style="color:#333">Book Now</a> </button></h4></div>
+
+</div>
+{% endblock content %}

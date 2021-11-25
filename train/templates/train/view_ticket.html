@@ -1,0 +1,99 @@
+{% extends 'train/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<script>
+        function printDiv() {
+            var divContents = document.getElementById("mydiv").innerHTML;
+            var a = window.open('', '', 'height=500, width=500');
+            a.document.write('<html>');
+            a.document.write('<body > <h1 align=center>Happy Journey <br>');
+            a.document.write(divContents);
+            a.document.write('</body></html>');
+            a.document.close();
+            a.print();
+        }
+    </script>
+
+
+
+
+
+<style>
+    input[type=text][type=password]{
+    border-radius:8px;
+    width:600px;
+    height:16px;
+    }
+</style>
+
+
+<div id = "mydiv" style="color:Black;border:1px solid white;border-radius:8px;background-color:white;padding:50px;
+background-image: url(http://127.0.0.1:8000/media/train.pics/Rajdhani_Ou1OZMW.jpg); opacity: 1;">
+
+    <h3><strong>Train Detail</strong></h3><hr>
+    <table width="800">
+        <tr>
+            <td><img src="{{book.passenger.train.img.url}}" style="width:100px;height:70"></td>
+            <td><b>Train Name: {{book.passenger.train.trainname}}</b><br>
+                Train Number: {{book.passenger.train.train_no}}<br>
+                Travelling : {{book.route}}<br>
+                Fare: {{book.passenger.fare}}<br></td>
+        </tr>
+    </table>
+            <hr><h3><strong>Passenger Detail</strong></h3><hr>
+
+    <div class="container">
+        {% for i in messages %}
+        <h3 style="color:red"><strong>! {{i}}</strong></h3>
+        {% endfor %}
+
+<table class="table table-bordered" id="myTable">
+  <thead style="color:white;background-color:rgb(83, 12, 131)">
+  <tr>
+
+    <th>Name</th>
+      <th>Train Name & No.</th>
+      <th> Age</th>
+    <th>Gender</th>
+    <th>Date</th>
+       <th>Fare</th>
+
+  </tr>
+  </thead>
+   <tbody>
+
+
+
+  <tr>
+
+
+    <td>{{book.passenger.name}}</td>
+    <td>{{book.passenger.train.trainname}}. {{book.passenger.train.train_no}}</td>
+      <td>{{book.passenger.age}}</td>
+      <td>{{book.passenger.gender}}</td>
+      <td>{{book.passenger.date1}}</td>
+      <td>{{book.passenger.fare}}</td>
+
+
+
+  </tr>
+
+
+    </tbody>
+</table>
+
+ </div><br>
+
+
+</div>
+<div style="text-align : center ; background-color:rgb(76, 236, 84);border-radius:8px;padding-top:3px;padding-bottom:3px"><h4 style="color:white;
+    ">
+    <button onclick = "printDiv()" style="background-color:rgb(150, 221, 226);border-radius:6px;border:1px solid red;padding:8px"><a href="#" style="color:rgb(59, 19, 134)">Print</a> </button></h4></div>
+
+
+
+
+
+{% endblock content %}
