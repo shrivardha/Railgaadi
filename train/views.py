@@ -42,6 +42,8 @@ def search(request):
     b_no =[]
     b_no1 =[]
     flag=0
+    fare1=0
+    fare2=0
     
     if request.method=="POST":
         f = request.POST["fcity"]
@@ -51,18 +53,25 @@ def search(request):
         data2 = Add_route.objects.filter(route=t)
         for i in data1:
             for j in data2:
-                if i.train.train_no==j.train.train_no:
+                
+                if i.train.train_no==j.train.train_no and f!=t:
                     route1.append(Add_Train.objects.filter(train_no=i.train.train_no))
-                    
+                    fare1=i.fare
+                    count+=1
+                    b_no.append(i.train.train_no)
+                    fare2 = j.fare
+                    count1+=1
+                    b_no1.append(j.train.train_no)
                     flag=1
-        for i in data1:
-            fare1=i.fare
-            count+=1
-            b_no.append(i.train.train_no)
-        for i in data2:
-            fare2 = i.fare
-            count1+=1
-            b_no1.append(i.train.train_no)
+        # for i in data1:
+            
+        #     fare1=i.fare
+        #     count+=1
+        #     b_no.append(i.train.train_no)
+        # for i in data2:
+        #     fare2 = i.fare
+        #     count1+=1
+        #     b_no1.append(i.train.train_no)
 
         fare3 = fare2-fare1
         if fare3<5 and fare3>0:
@@ -70,7 +79,8 @@ def search(request):
         elif fare3<0:
             fare3 = fare3*(-1)
         elif fare3==0:
-            fare3 = fare3
+            #fare3 = fare3
+            fare3=0
         route = f+" to "+t
         if flag==1:
             Asehi.objects.create(fare=fare3,train_name=data1.first(),date3=da)
@@ -106,8 +116,9 @@ def Book_detail(request,coun,pid,route1):
         f = request.POST["name"]
         t = request.POST["age"]
         da = request.POST["gender"]
+        
         passenger = Passenger.objects.create(user=user1,train=data2,route=route1,name=f,gender=da,age=t,fare=data.fare,date1=data.date3)
-        Book_ticket.objects.create(user=user1, route=route1, fare=total, passenger=passenger, date2=data.date3)
+        Book_ticket.objects.create(user=user1, route=route1, fare=data.fare, passenger=passenger, date2=data.date3)
 
         if passenger:
             error = True
@@ -120,10 +131,12 @@ def Delete_passenger(request,pid,bid,route1):
     data = Passenger.objects.get(id=pid)
     data.delete()
     ase = Asehi.objects.all()
-    coun = 7
+    coun = 0
     for i in ase:
         coun = coun + 1
     messages.info(request,'Passenger Deleted Successfully')
+
+
     return redirect('book_detail', coun,bid,route1)
 
 def Card_Detail(request,total,coun,route1,pid):

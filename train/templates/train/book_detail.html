@@ -11,7 +11,7 @@
 {% if error %}
 <script>
     alert('Passenger Added Successfully')
-    window.location='{% url 'book_detail' coun data2.id route1 %}'
+    window.location=`{% url 'book_detail' coun data2.id route1 %}`
 </script>
 {% endif %}
 

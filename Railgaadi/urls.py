@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path,include
+from django.conf.urls import url
 from users import views as users_views
 from train import views as train_views
 from django.conf import settings
 from django.conf.urls.static import static
+re_path=url
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/',users_views.register, name='register'),
@@ -31,11 +33,14 @@ urlpatterns = [
     path('search/',train_views.search,name='search'),
     path('book_detail/(?P<coun>[0-9]+)/(?P<pid>[0-9]+)/(<str:route1>)',train_views.Book_detail,name="book_detail"),
     path('delete_passenger/(?P<pid>[0-9]+)/(?P<bid>[0-9]+)/(<str:route1>)', train_views.Delete_passenger, name="delete_passenger"),
+    
+
     path('card_detail/(?P<total>[0-9]+)/(?P<coun>[0-9]+)/(<str:route1>)/(?P<pid>[0-9]+)', train_views.Card_Detail, name="card_detail"),
     path('my_booking/', train_views.my_booking, name="my_booking"),
+    #path('delete_my_booking/(?P<pid>[0-9]+)', train_views.delete_my_booking, name="delete_my_booking"),
     path('delete_my_booking/(?P<pid>[0-9]+)', train_views.delete_my_booking, name="delete_my_booking"),
     path('view_ticket/(?P<pid>[0-9]+)', train_views.view_ticket, name="view_ticket"),
-    #path('search/',train_views.search,name='search'),
+    
 
     path('p/',users_views.profile, name='p'),
 

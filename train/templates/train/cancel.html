@@ -12,7 +12,7 @@
 {% if error %}
 <script>
   alert('Ticket Cancelled Successfully')
-  window.location='{% url 'my_booking' %}'
+  window.location=`{% url 'my_booking' %}`
 </script>
 {% endif %}
 <div style="color:rgb(39, 25, 235);border:1px solid white;border-radius:8px;background-color:white;padding:50px;
@@ -41,7 +41,7 @@ background-image: url(http://127.0.0.1:8000/media/train.pics/Rajdhani_Ou1OZMW.jp
 
     {% for i in pro %}
 
-  <tr>
+  <tr  style="color:rgb(62, 16, 105);background-color: rgb(227, 240, 244)">
     <td>{{forloop.counter}}</td>
     <td>{{i.name}}</td>
     <td>{{i.train.trainname}}. {{i.train.tran_no}}</td>
