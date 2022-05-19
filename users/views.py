@@ -13,7 +13,9 @@ def register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for {username}!')
+            print(username)
+            
+            messages.success(request, f'Account created for {username}! Please login to continue ')
             
             return redirect('train-home')
     else:
@@ -21,9 +23,14 @@ def register(request):
     return render(request, 'users/register.html', {'form': form})
 @login_required
 def profile(request):
-    u2 = Profile.objects.filter(id=request.user.id).exists()
+    u2 = Profile.objects.filter(user_id=request.user.id).exists()
+    print(request.user.id)
+    print(Profile.id)
+    #uu = Profile.objects.filter(user_id=User.id).exists()
     #u1 = User.objects.filter(id=u2).get()
-    if not u2:
+    print(u2)
+    #print(uu)
+    if not (u2):
         
         return render(request,'users/p.html')
     if request.method == 'POST':

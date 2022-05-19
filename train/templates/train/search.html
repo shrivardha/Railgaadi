@@ -28,14 +28,18 @@ background-image: url(http://127.0.0.1:8000/media/train.pics/Rajdhani_Ou1OZMW.jp
         <tr style="margin-top:10px">
             
             <td><hr><img src="{{i.0.img.url}}" style="width:180px;height: 150px;" alt="{{i.0.trainname}}"></td>
-            <td><b><br>Train Name: {{i.0.trainname}}</b><br>
+            <td><b><br>Train Name: {{i.0.trainname}}<br>
+                
                 Train Number: {{i.0.train_no}}<br>
                 From City: {{i.0.from_city}}<br>
-                Fare: {{fare3}}<br></td>
+                To City: {{i.0.to_city}}<br>
+                Route of Passenger: {{route}}<br>
+                Fare: {{fare3}}<br></b></td>
             <td><br><br><button style="background-color:rgb(185, 34, 185);border:1px solid rgb(184, 29, 231);border-radius:8px;padding:10px"><a href="{% url 'book_detail' coun i.0.id route %}" style="padding:30px;color:white;">Book Now</a></button><br><br></td>
         </tr>
         {% endfor %}
     </table><br>
+    
     {% endif %}
 
 
@@ -44,22 +48,23 @@ background-image: url(http://127.0.0.1:8000/media/train.pics/Rajdhani_Ou1OZMW.jp
     <form method="post" action="">
         {% csrf_token %}
 
-        From City:<br><select name="fcity" style="border-radius:8px;width:600px;height:35px;">
+        <strong style="color:rgb(57, 9, 80) ;">From City:</strong><br><select name="fcity" style="border-radius:8px;width:600px;height:35px;">
         {% for i in data2 %}
                             <option>{{i.route}}</option>
         {% endfor %}
                       </select><br><br>
 
-        To City:<br><select name="tcity" style="border-radius:8px;width:600px;height:35px;">
+        <strong style="color:rgb(65, 10, 90)">To City:</strong><br><select name="tcity" style="border-radius:8px;width:600px;height:35px;">
                            {% for i in data2 %}
                             <option>{{i.route}}</option>
         {% endfor %}
 
                      </select><br><br>
 
-        Travel Date:<br><input type="date" name="date" style="border-radius:8px;width:600px;height:35px;"><br><br>
+        <strong style="color:rgb(69, 10, 96) ;">Date:</strong><br><input type="date" name="date" style="border-radius:8px;width:600px;height:35px;"><br><br>
         <input type="submit" value="Search" style="color:white;border-radius:8px;width:115px;height:35px;background-color:rgb(111, 17, 155);border:1px solid rgb(173, 26, 179)">
     </form>
     {% endif %}
+
     </div>
 {% endblock content %}
